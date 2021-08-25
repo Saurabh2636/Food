@@ -1,0 +1,2 @@
+.movie{position:relative;overflow:hidden}.movie-over{background-color:#5d7715;position:absolute;bottom:0;-webkit-transform:translateX(100%);transform:translateX(100%);transition:-webkit-transform .6s ease-in-out;transition:transform .6s ease-in-out;transition:transform .6s ease-in-out,-webkit-transform .6s ease-in-out}.movie:hover .movie-over{-webkit-transform:translateX(0);transform:translateX(0)}.photo{border-radius:20px}
+/*# sourceMappingURL=main.66dae731.chunk.css.map */
