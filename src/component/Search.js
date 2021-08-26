@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 import { Typography, Button, Grid ,Box} from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import "../App.css";
-const Search = () => {
+const Search = (props) => {
   const [data1, setdata1] = useState('')
   const data = useContext(Output)
   const YOUR_APP_ID = "c4d46ed9";
@@ -23,6 +23,10 @@ const Search = () => {
         console.log(err);
       });
   },[data]);
+  const abc=(name)=>{
+    props.setBill([...props.bill,name])
+    alert(`You order : ${name}`)
+  }
   return (
     <>
       <Container>
@@ -61,6 +65,7 @@ const Search = () => {
                         <Button variant="contained" 
                          color="secondary" size="small"  
                          startIcon={<AddIcon />}
+                         onClick={()=>abc(item.recipe.label)}
                          >
                            Buy
                         </Button>

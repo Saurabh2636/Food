@@ -10,15 +10,11 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import {
-  SubjectOutlined,
-  AddCircleOutlineOutlined,
-  LocationDisabled,
-} from "@material-ui/icons";
+import { SubjectOutlined, AddCircleOutlineOutlined } from "@material-ui/icons";
 import { useHistory, useLocation } from "react-router-dom";
 import InputBase from "@material-ui/core/InputBase";
 import Button from "@material-ui/core/Button";
-const drawerWidth = 180;
+const drawerWidth = 170;
 const useStyle = makeStyles((theme) => {
   return {
     page: {
@@ -29,7 +25,7 @@ const useStyle = makeStyles((theme) => {
     },
     ListName: {
       marginTop: "5cm",
-      marginLeft: "20px",
+      marginLeft: "5px",
     },
     List: {
       marginTop: "15px",
@@ -66,6 +62,7 @@ const useStyle = makeStyles((theme) => {
     },
     btn: {
       background: "#9e9e9e",
+      marginLeft:'20px'
     },
     toolbar: theme.mixins.toolbar,
   };
@@ -76,14 +73,12 @@ const Layout = ({ children }) => {
   const location = useLocation();
   let data1 = useContext(Output);
   const setdata1 = useContext(SetOutput);
-  console.log(location.pathname);
   useEffect(() => {
     setdata1("");
   }, [location]);
   const abc = () => {
     History.push("/Food/search");
   };
-  console.log(data1);
   const menuItem = [
     {
       text: "Breakfast",
@@ -108,12 +103,12 @@ const Layout = ({ children }) => {
       <CssBaseline />
       <AppBar className={classes.appbar} position="fixed">
         <Toolbar>
-          <Typography variant="h4">🍕Food🍮</Typography>
+          <Typography variant="h4">Food</Typography>
           {location.pathname !== "/Food/search" ? (
-            <div style={{display: 'flex'}}>
+            <div style={{ display: "flex" }}>
               <div className={classes.search}>
                 <InputBase
-                  classname={classes.abc}
+                  className={classes.abc}
                   placeholder="Search…"
                   classes={{
                     input: classes.inputInput,
@@ -133,12 +128,19 @@ const Layout = ({ children }) => {
                   abc();
                 }}
               >
-                Go
+              FIND
               </Button>
             </div>
           ) : (
             ""
           )}
+          <Button variant="contained"
+           color="primary"
+           className={classes.btn}
+           onClick={()=>{History.push('./bill')}}
+           >
+            Bill
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -150,11 +152,11 @@ const Layout = ({ children }) => {
         anchor="left"
       >
         <List className={classes.ListName}>
-          {menuItem.map((item) => (
+          {menuItem.map((item, ind) => (
             <ListItem
               className={classes.List}
               button
-              key={item.key}
+              key={ind}
               onClick={() => {
                 History.push(item.path);
               }}

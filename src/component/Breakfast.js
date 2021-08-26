@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Container from "@material-ui/core/Container";
 import { Typography, Button, Grid ,Box} from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import "../App.css";
-const Breakfast = () => {
+const Breakfast = (props) => {
   const [data, setdata] = useState("");
-  const [exist, setExist] = useState(true);
   const YOUR_APP_ID = "c4d46ed9";
   const YOUR_APP_KEY = "039f52e1aada485b5cd90a404a383e2f";
   useEffect(async () => {
@@ -21,10 +20,14 @@ const Breakfast = () => {
         console.log(err);
       });
   }, []);
+  const abc=(name)=>{
+    props.setBill([...props.bill,name])
+    alert(`You order : ${name}`)
+  }
   return (
     <>
       <Container>
-        <Typography align="center" color="textPrimary" gutterBottom variant="h4">
+        <Typography align="center" color="textPrimary" gutterBottom variant="h4" className='text'>
           Breakfast🥪
         </Typography>
         <Grid container spacing={2} justifyContent="center">
@@ -50,7 +53,7 @@ const Breakfast = () => {
                             "https://www.edamam.com/web-img/043/0435e5f2e9d306844325b3a866d5fbc1";
                         }}
                       />
-                      <Container textAlign="center" className="movie-over">
+                      <Container className="movie-over">
                         <Typography variant="h5" gutterBottom align="center">
                           {item.recipe.label}
                         </Typography>
@@ -58,10 +61,11 @@ const Breakfast = () => {
                           {item.recipe.source}
                         </Typography>
                         <Box textAlign="center">
-                        <Button variant="contained" 
-                         color="secondary" size="small"  
-                         startIcon={<AddIcon />}
-                         >
+                           <Button variant="contained" 
+                            color="secondary" size="small"  
+                              startIcon={<AddIcon />}
+                              onClick={()=>abc(item.recipe.label)}      
+                             >
                            Buy
                         </Button>
                         </Box>
